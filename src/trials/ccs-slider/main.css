@@ -1,0 +1,63 @@
+/* Variables */
+div {
+  opacity: .95;
+}
+
+#main-content {
+  background: burlywood;
+  position: absolute;
+  right: 0px;
+  width: 768px;
+  height: 100vh;
+  z-index: 10;
+}
+
+#slider-content {
+  position: absolute;
+  background: red;
+  left: 0px;
+  right: 768px;
+  height: 100vh;
+}
+
+#button-wrapper {
+  float: right;
+  background: none;
+  width: 50px;
+  height: 100vh;
+  margin-right: 0px;
+}
+
+#content-wrapper {
+  float: right;
+  background: rebeccapurple;
+  height: 100vh;
+  width: 100%;
+  margin-left: -50px;
+  margin-right: -100%;
+}
+
+#content-wrapper > div {
+  float: left;
+}
+
+#map {
+  width: 100%;
+  margin-left: -50px;
+  height: 100vh;
+  background: yellowgreen;
+  color: black;
+  visibility: hidden;
+}
+
+#sneek-peek {
+  width: 50px;
+  height: 100vh;
+  background: orange;
+  margin-left: -50px;
+  z-index: 10;
+}
+
+button {
+  margin-top: 50vh;
+}
