@@ -11,3 +11,4 @@
 * 180726
 
   * 1910  Added the first trial, CSS slider.
+  * 1949  Centered the slide button of CSS slider.

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './main.css';
 
+/* #TODO: Document the Styling */
 export default class CssSlider extends Component {
   render() {
     return (
@@ -12,7 +13,7 @@ export default class CssSlider extends Component {
             <div id="content">Content Content Content</div>
           </div>
           <div id="button-wrapper">
-            <button>Show Content Show Content</button>
+            <button>Flexi-width button</button>
           </div>
         </div>
       </div>
