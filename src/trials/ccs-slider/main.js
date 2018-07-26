@@ -12,9 +12,7 @@ export default class CssSlider extends Component {
             <div id="sneek-peek">Sneek Peek</div>
             <div id="content">Content Content Content</div>
           </div>
-          <div id="button-wrapper">
-            <button>Flexi-width button</button>
-          </div>
+          <div id="button-wrapper"><div><button>Flexi-width button</button></div></div>
         </div>
       </div>
     );

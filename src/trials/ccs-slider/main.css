@@ -1,10 +1,35 @@
-/* Variables */
+/* Dev */
 div {
   opacity: .95;
 }
 
 #main-content {
   background: burlywood;
+}
+
+#slider-content {
+  background: red;
+}
+
+#content-wrapper {
+  background: rebeccapurple;
+}
+
+#content {
+  background: yellowgreen;
+  color: black;
+}
+
+#sneek-peek {
+  background: orange;
+}
+
+#button-wrapper {
+  background: rgba(0, 255, 0, 0.2);
+}
+
+/* Layout */
+#main-content {
   position: absolute;
   right: 0px;
   width: 768px;
@@ -14,52 +39,55 @@ div {
 
 #slider-content {
   position: absolute;
-  background: red;
   left: 0px;
   right: 768px;
   height: 100vh;
-}
-
-#button-wrapper {
-  float: right;
-  background: rgba(0, 255, 0, 0.2);
-  width: 768px;
-  height: 100vh;
-  margin-right: -335px;
+  overflow: hidden;
 }
 
 #content-wrapper {
   float: right;
-  background: rebeccapurple;
   height: 100vh;
   width: 100%;
-  margin-left: -50px;
-  margin-right: -100%;
+  margin-right: -95%; /* Apply transition here! */
 }
 
 #content-wrapper > div {
   float: left;
 }
 
-#map {
+#content {
   width: 100%;
-  margin-left: -50px;
+  margin-left: -5%;
   height: 100vh;
-  background: yellowgreen;
-  color: black;
-  visibility: hidden;
+  opacity: 0; /* Apply transition here! */
 }
 
 #sneek-peek {
-  width: 50px;
+  width: 5%;
   height: 100vh;
-  background: orange;
-  margin-left: -50px;
-  z-index: 10;
+  opacity: 1; /* Apply transition here! */
 }
 
-button {
-  margin-top: 50vh;
-  transform: translateX(0%) translateY(-50%) rotate(-90deg);
+#button-wrapper {
+  float: right;
+  width: 0px;
+  height: 100vh;
+  margin-left: -100%;
+}
+
+#button-wrapper > div {
+  position: relative;
+  left: -50vh;
+  width: 100vh;
+  text-align: center;
+  transform: rotate(-90deg) translateX(-50%);
+  transform-origin: 50% 0%;
+}
+
+#button-wrapper button {
   font-size: 1em;
+  padding: 0.1em 2em;
+  overflow: hidden;
+  white-space: nowrap;
 }
