@@ -1,0 +1,46 @@
+/* Dev */
+body {
+  color: white;
+}
+
+.outer {
+  background: wheat;
+}
+
+.fill {
+  background: green;
+}
+
+.fill:after {
+  content: 'fill';
+}
+
+.fixed {
+  background: rebeccapurple;
+}
+
+.fixed:after {
+  content: 'fixed';
+}
+
+div {
+  margin: 1em;
+}
+
+/* Layout */
+.outer {
+  display: flex;
+}
+
+.fill {
+  flex: 1;
+  overflow: hidden;
+}
+
+.fixed {
+  width: 20vw;
+}
+
+div {
+  height: 100vh;
+}
