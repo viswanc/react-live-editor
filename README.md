@@ -6,6 +6,10 @@
 
 * Add LESS support.
 
+## Notes
+
+* To load a trial import it from default/main.js and export the as the default.
+
 ## Log
 
 * 180726
@@ -16,3 +20,7 @@
 * 180727
 
   * 0040  Made the styling of CSS slider, more robust.
+
+* 180807
+
+  * 1817  Changed the module loading mechanism, so to avoid unclean commits.
