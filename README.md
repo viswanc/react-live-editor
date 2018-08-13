@@ -33,3 +33,7 @@
   * 2220  Added a lib, utils.
   * 2250  Setup the base for a new trial, fit-text.
   * 2310  Prepared the structures for fit-text.
+
+* 180814
+
+  * 0045  Did a preliminary implementation of fit-text.
