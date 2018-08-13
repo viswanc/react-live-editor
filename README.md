@@ -29,3 +29,4 @@
 * 180813
 
   * 2220  Added a lib, utils.
+  * 2250  Setup the base for a new trial, fit-text.
