@@ -37,3 +37,4 @@
 * 180814
 
   * 0045  Did a preliminary implementation of fit-text.
+  * 0448  Improved fit-text.

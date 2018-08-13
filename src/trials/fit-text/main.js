@@ -9,47 +9,90 @@ const maxFontSize = 30;
 const baseFontSize = 20;
 const charWidth = 12; // In pixels, when the font-size is 20px.
 const charHeight = 23;
-const whRatio = charHeight / charWidth;
 
 /* Helpers */
-// const log = console.log;
-const log = () => {};
+const log = console.log;
+// const log = () => {};
+
+const longest = words => words.reduce((a, b) => a.length > b.length ? a : b)
+
+const getLongestWordGroupLength = (text, rows) => {
+  if(rows === 1) {
+    return text.length;
+  }
+
+  let minCol = 0;
+  let lineStart = 0;
+  let lineBreak = 0;
+  let maxCols = Math.ceil(text.length / rows);
+  let line;
+
+  while(lineBreak > -1) {
+    line = text.substr(lineStart, maxCols);
+    lineBreak = line.lastIndexOf(' ');
+    minCol = Math.max(minCol, lineBreak);
+    lineStart = lineStart + lineBreak + 1;
+  }
+
+  return Math.max(minCol, longest(text.split(' ')).length);
+}
+
+const getBox = (key) => {
+
+  let width = getRandomInt(5, 10) * 20;
+  let height = getRandomInt(1, 2) * 20;
+  let text = getRandomText(getRandomInt(6, 40));
+  // let width = 6 * 20;
+  // let height = 3 * 20;
+  // let text = '6lht8u 0tju8q pnjt2v';
+
+  return (
+    <div key={key} className='box'
+      style={{
+        width: width + 'px',
+        height: height + 'px',
+        fontSize: getFontSize(text, width, height) + 'px'
+      }}
+    >
+      { text }
+    </div>
+  )
+}
 
 const getFontSize = (text, width, height) => {
   
-  let words = text.trim().split(' ');
+  text = text.trim().replace(/\s+/g, ' ');
+  let words = text.split(' ');
   let maxRows = words.length;
-  let minCol = words.reduce((a, b) => a.length > b.length ? a : b).length;
-  let minRows = 1;
-
-  let hieghtBasedMaxFS = height / maxRows / charHeight * baseFontSize;
+  
+  log(text, maxRows);  
+  
   let fs = 0;
+  let possibleRows = 1;
 
-  log(text, minCol, maxRows);
-  log('hb', height, maxRows, hieghtBasedMaxFS);
-  if(hieghtBasedMaxFS / baseFontSize * charWidth * minCol < width) { // Try to fill the height.
+  while(possibleRows <= maxRows) {
+    
+    let minCol = getLongestWordGroupLength(text, possibleRows);
+    log(text, possibleRows, minCol);
+    let hieghtBasedMaxFS = height / possibleRows / charHeight * baseFontSize;
+    if(hieghtBasedMaxFS / baseFontSize * charWidth * minCol < width) {
 
-    fs = hieghtBasedMaxFS;
+      log('-- hb --', height, possibleRows, hieghtBasedMaxFS);
+      fs = hieghtBasedMaxFS;
+      break;
+    }
+
+    possibleRows += 1;
   }
-  else {
 
+  if (! fs) {
+    let minCol = longest(words).length;
     let widthBasedMaxFS = width / minCol / charWidth * baseFontSize;
-
-    log('wb', width, minCol, widthBasedMaxFS);  
-    if(widthBasedMaxFS / baseFontSize  * charHeight * minRows < height) { // Try to fill the width.
-
-      fs = widthBasedMaxFS;
-    }
-    else { // Use minimum font-size. // ToDo: Find the right minimum font-size.
-
-      fs = charWidth / (width / text.length) * baseFontSize;
-      log('min', fs);  
-    }
+    log('-- wb --', width, minCol, widthBasedMaxFS);
+    fs = widthBasedMaxFS;
   }
 
-  log(fs , maxFontSize, Math.min(fs , maxFontSize));log(Math.min(fs , maxFontSize));
-
-  return Math.min(fs , maxFontSize);
+  return Math.min(fs, maxFontSize);
 }
 
 export default class FitText extends Component {
@@ -63,21 +106,8 @@ export default class FitText extends Component {
     
     let Divs = [];
     
-    for(let i=0; i < 1000; ++i) {
-      let width = getRandomInt(5, 10) * 20;
-      let height = getRandomInt(1, 10) * 20;
-      let text = getRandomText(getRandomInt(6, 40));
-
-      Divs.push(<div key={i} className='box'
-        style={{
-          width: width + 'px',
-          height: height + 'px',
-          fontSize: getFontSize(text, width, height) + 'px'
-        }}
-      >
-        { text }
-      </div>
-      );
+    for(let i=0; i < 10; ++i) {
+      Divs.push(getBox(i));
     }
     
     return <div> { Divs }</div>
