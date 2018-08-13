@@ -6,6 +6,8 @@
 
 * Add LESS support.
 
+* Implement dynamic trial loading.
+
 ## Notes
 
 * To load a trial import it from default/main.js and export the as the default.
@@ -30,3 +32,4 @@
 
   * 2220  Added a lib, utils.
   * 2250  Setup the base for a new trial, fit-text.
+  * 2310  Prepared the structures for fit-text.
