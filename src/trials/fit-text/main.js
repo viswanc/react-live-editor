@@ -11,40 +11,44 @@ const charWidth = 12; // In pixels, when the font-size is 20px.
 const charHeight = 23;
 
 /* Helpers */
-const log = console.log;
-// const log = () => {};
+// const log = console.log;
+const log = () => {};
 
 const longest = words => words.reduce((a, b) => a.length > b.length ? a : b)
 
 const getLongestWordGroupLength = (text, rows) => {
-  if(rows === 1) {
-    return text.length;
-  }
-
-  let minCol = 0;
-  let lineStart = 0;
+  let minCols = longest(text.split(' ')).length;
+  let textLength = text.length;
+  let cursorPos = 0;
   let lineBreak = 0;
-  let maxCols = Math.ceil(text.length / rows);
+  let maxCols = Math.max(minCols, Math.ceil(textLength / rows));
+  let cols = maxCols;
   let line;
 
-  while(lineBreak > -1) {
-    line = text.substr(lineStart, maxCols);
+  log(text, cols, maxCols, cursorPos, textLength, minCols, Math.ceil(textLength / rows));
+  while(cols >= minCols && cursorPos + maxCols < textLength) {
+    line = text.substr(cursorPos, cols);
     lineBreak = line.lastIndexOf(' ');
-    minCol = Math.max(minCol, lineBreak);
-    lineStart = lineStart + lineBreak + 1;
+    log(text, cols, maxCols, cursorPos, textLength, lineBreak);
+    
+    if(lineBreak != -1) {
+      cursorPos += lineBreak + 1;
+    }
+    
+    cols += 1;
   }
 
-  return Math.max(minCol, longest(text.split(' ')).length);
+  return cols;
 }
 
 const getBox = (key) => {
 
   let width = getRandomInt(5, 10) * 20;
-  let height = getRandomInt(1, 2) * 20;
+  let height = getRandomInt(1, 5) * 20;
   let text = getRandomText(getRandomInt(6, 40));
   // let width = 6 * 20;
-  // let height = 3 * 20;
-  // let text = '6lht8u 0tju8q pnjt2v';
+  // let height = 2 * 20;
+  // let text = '7 d sb35fpxy8oir1oq mmqcuc r';
 
   return (
     <div key={key} className='box'
@@ -54,7 +58,13 @@ const getBox = (key) => {
         fontSize: getFontSize(text, width, height) + 'px'
       }}
     >
+      <div style={{
+        fontSize: getFontSize(text, width, height) + 'px'
+        }}
+      >
       { text }
+      </div>
+      <div className="dev">{ `${width} x ${height}`}</div>
     </div>
   )
 }
@@ -65,16 +75,14 @@ const getFontSize = (text, width, height) => {
   let words = text.split(' ');
   let maxRows = words.length;
   
-  log(text, maxRows);  
-  
   let fs = 0;
   let possibleRows = 1;
 
   while(possibleRows <= maxRows) {
-    
     let minCol = getLongestWordGroupLength(text, possibleRows);
-    log(text, possibleRows, minCol);
+    // log(text, possibleRows, minCol);
     let hieghtBasedMaxFS = height / possibleRows / charHeight * baseFontSize;
+    log(text, maxRows, possibleRows, minCol);
     if(hieghtBasedMaxFS / baseFontSize * charWidth * minCol < width) {
 
       log('-- hb --', height, possibleRows, hieghtBasedMaxFS);
