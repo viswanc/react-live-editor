@@ -42,3 +42,8 @@
   * 1511  Added some dev tools, to fit-text.
   * 2121  Redid the algorithm for text-wrapping.
   * 2213  Fit-text done.
+
+* 180815
+
+  * 0200  Added a lib, test.
+  * 0227  Tested the trial, fit-test and established its accuracy to be more than 98%.

@@ -6,7 +6,7 @@ body {
 .box {
   border: 1px solid black;
   margin: 10px;
-  background: black;
+  /* background: black; */
   /* Uncomment the line above to test for overflows. */
 }
 
@@ -21,4 +21,8 @@ body {
   float: left;
   font-family: monospace;
   font-size: 20px;
+}
+
+.text {
+  display: inline-block;
 }

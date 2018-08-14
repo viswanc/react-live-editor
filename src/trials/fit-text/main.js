@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { getRandomInt, getRandomText } from '../../libs/utils';
+import { assert } from '../../libs/test';
 import './main.css';
 
 /* Config */
@@ -15,12 +16,11 @@ const charWidth = 12; // In pixels, when the font-size is 20px.
 const charHeight = 23;
 
 /* Dev */
-// const log = console.log;
-const log = () => {};
+// const log = console.log; /* // Dev toggle shortcut.
+//*//*
+const log = () => {}; //*/
 
-/* Helpers */
-const longest = words => words.reduce((a, b) => a.length > b.length ? a : b)
-
+/* Functions */
 const canTextFitBox = (text, rows, columns) => {
   let rowsTaken = 0;
   let cursorPos = 0;
@@ -67,6 +67,7 @@ const getFontSize = (text, width, height) => {
   return Math.max(Math.min(fs, maxFontSize), minFontSize);
 }
 
+/* Helpers */
 const getBox = (key) => {
 
   let width = getRandomInt(5, 10) * 20;
@@ -80,7 +81,7 @@ const getBox = (key) => {
         height: height + 'px',
       }}
     >
-      <div style={{ fontSize: getFontSize(text, width, height) + 'px' }}>
+      <div className="text" style={{ fontSize: getFontSize(text, width, height) + 'px' }}>
       { text }
       </div>
       <div className="dev">{ `${width} x ${height}`}</div>
@@ -88,11 +89,36 @@ const getBox = (key) => {
   )
 }
 
+/* Tests */
+const testOverflow = () => {
+
+  let acceptedAccuraccy = 0.98;
+
+  document.querySelectorAll('.box').forEach(box => {
+    let text = box.querySelector('.text');
+    var boxRect = box.getBoundingClientRect();
+    var textRect = text.getBoundingClientRect();
+    log(text.innerHTML);
+
+    try {
+      assert(boxRect.left * acceptedAccuraccy <= textRect.left);
+      assert(boxRect.top * acceptedAccuraccy <= textRect.top);
+      assert(boxRect.right >= textRect.right * acceptedAccuraccy);
+      assert(boxRect.bottom >= textRect.bottom * acceptedAccuraccy);
+    }
+    catch(e) {
+      log('box', boxRect);
+      log('text', textRect);
+    }
+  });
+}
+
+/* Main */
 export default class FitText extends Component {
 
   componentDidMount() {
 
-    // document.querySelectorAll('.box').forEach(elm => log(elm.offsetWidth / elm.innerText.length, elm.offsetHeight));
+    setTimeout(testOverflow, 500);
   }
 
   render() {
