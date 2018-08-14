@@ -40,3 +40,4 @@
   * 0448  Improved fit-text.
   * 1400  Improved text-wrapping.
   * 1511  Added some dev tools, to fit-text.
+  * 2121  Redid the algorithm for text-wrapping.

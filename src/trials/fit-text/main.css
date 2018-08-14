@@ -1,12 +1,18 @@
 /* Dev */
+body {
+  background: white;
+}
+
 .box {
-  border: 1px solid;
+  border: 1px solid black;
   margin: 10px;
+  /* background: black; */
 }
 
 .dev {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: black;
   color: white;
+  opacity: 0.05;
 }
 
 /* Layout */
