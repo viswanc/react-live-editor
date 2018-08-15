@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import { getRandomInt, getRandomText } from '../../libs/utils';
-import { assert } from '../../libs/test';
 import './main.css';
 
 /* Config */
@@ -16,7 +15,7 @@ const charWidth = 12; // In pixels, when the font-size is 20px.
 const charHeight = 23;
 
 /* Dev */
-// const log = console.log; /* // Dev toggle shortcut.
+const log = console.log; /* // Dev toggle shortcut.
 //*//*
 const log = () => {}; //*/
 
@@ -49,6 +48,8 @@ const canTextFitBox = (text, rows, columns) => {
 }
 
 const getFontSize = (text, width, height) => {
+
+  // #Fix:10: The height often overflows, due to the characters like 'g' and 'y', which flow beyond the base-line.
   
   text = text.trim().replace(/\s+/g, ' ');
 
@@ -90,25 +91,23 @@ const getBox = (key) => {
 }
 
 /* Tests */
-const testOverflow = () => {
-
-  let acceptedAccuraccy = 0.98;
-
+const testOverflow = (acceptedAccuraccy = 1) => {
+  
   document.querySelectorAll('.box').forEach(box => {
     let text = box.querySelector('.text');
     var boxRect = box.getBoundingClientRect();
     var textRect = text.getBoundingClientRect();
-    log(text.innerHTML);
-
-    try {
-      assert(boxRect.left * acceptedAccuraccy <= textRect.left);
-      assert(boxRect.top * acceptedAccuraccy <= textRect.top);
-      assert(boxRect.right >= textRect.right * acceptedAccuraccy);
-      assert(boxRect.bottom >= textRect.bottom * acceptedAccuraccy);
-    }
-    catch(e) {
-      log('box', boxRect);
-      log('text', textRect);
+    
+    if(boxRect.width < textRect.width * acceptedAccuraccy
+      || boxRect.height < textRect.height * acceptedAccuraccy
+    ) {
+      log({
+        text: text.innerText,
+        expectedWidth: boxRect.width,
+        expectedHeight: boxRect.height,
+        actualWidht: textRect.width,
+        actualHeight: textRect.height,
+      });
     }
   });
 }
