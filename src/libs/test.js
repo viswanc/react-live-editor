@@ -1,5 +1,3 @@
-import { Exception } from "handlebars";
-
 /* Test Helpers */
 
 const assert = (value) => {
@@ -9,6 +7,6 @@ const assert = (value) => {
   }
 }
 
-export {
+module.exports = {
   assert,
 }

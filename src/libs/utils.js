@@ -1,14 +1,14 @@
 /* Utils */
 
 /* Data */
-const defaultChars = "abcdefghijklmnopqrstuvwxyz0123456789    ";
+const defaultChars = 'abcdefghijklmnopqrstuvwxyz0123456789    ';
 
 const getRandomInt = (min=0, max=1) => {
   
   return Math.floor(Math.random() * Math.floor(max + 1 - min)) + min;
 }
 
-const getRandomText = (length=10, chars) => {
+const getRandomText = (length=10, chars=defaultChars) => {
   
   chars = chars || defaultChars;
   let ret = '';
@@ -21,7 +21,7 @@ const getRandomText = (length=10, chars) => {
   return ret;
 }
 
-export {
+module.exports =  {
   getRandomInt,
   getRandomText,
 }

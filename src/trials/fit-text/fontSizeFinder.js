@@ -13,6 +13,7 @@
  * The assumed base font is the default font of the monospace family, in Chrome and Safari.
  
  */
+
  /* Exports */
 const FontSizeFinder = function(
   minFontSize = 1,
@@ -23,31 +24,39 @@ const FontSizeFinder = function(
   charHeight = 23
 ) {
 
+  const standardizeText = text => text.replace(/^ +| +$/, '').replace(/\  */, ' ')
+
   const canTextFitBox = this.canTextFitBox = (text, rows, columns) => {
-    let rowsTaken = 0;
+    text = standardizeText(text)
+    let rowsTaken = 1;
     let cursorPos = 0;
     let textLength = text.length;
-    let lineBreak;
-  
+    let parseLength = columns + 1;
+
     while(cursorPos < textLength) {
-      let line = text.substr(cursorPos, columns + 1);
-      lineBreak = line.lastIndexOf(' ');
-      
-      if(lineBreak > -1) {
-        cursorPos += lineBreak + 1;
-        rowsTaken += 1;
-  
-        if(rowsTaken > rows) {
-          return false;
+
+      let line = text.substr(cursorPos, parseLength);
+      let lineBreak = line.indexOf('\n');
+
+      if(lineBreak == -1) { // There isn't a line-break.
+        
+        if(columns < line.length) { // There is a need to check for spaces.
+          lineBreak = line.lastIndexOf(' ');
+
+          if(lineBreak == -1) { // The columns are lesser than the chars of the longest word.
+            return false;
+          }
+        }
+        else { // All the characters are allocated.
+          break;
         }
       }
-      else if(cursorPos + columns >= textLength) {
-        return rows > rowsTaken || columns > textLength;
-      }
-      else {
-        return false;
-      }
+
+      cursorPos += lineBreak + 1;
+      rowsTaken += 1;
     }
+
+    return rowsTaken <= rows;
   }
 
   this.getFontSize = (text, width, height) => {
