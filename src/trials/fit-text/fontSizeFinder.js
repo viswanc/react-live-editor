@@ -15,7 +15,7 @@
  */
 
  /* Exports */
-const FontSizeFinder = function(
+ const FontSizeFinder = function(
   minFontSize = 1,
   maxFontSize = 30,
   precisionFactor = 1.05,
@@ -24,10 +24,10 @@ const FontSizeFinder = function(
   charHeight = 23
 ) {
 
-  const standardizeText = text => text.replace(/^ +| +$/, '').replace(/\  */, ' ')
+  const standardizeText = text => text.replace(/^ +| +$/, '').replace(/  */, ' ');
 
   const canTextFitBox = this.canTextFitBox = (text, rows, columns) => {
-    text = standardizeText(text)
+    text = standardizeText(text);
     let rowsTaken = 1;
     let cursorPos = 0;
     let textLength = text.length;
@@ -38,12 +38,12 @@ const FontSizeFinder = function(
       let line = text.substr(cursorPos, parseLength);
       let lineBreak = line.indexOf('\n');
 
-      if(lineBreak == -1) { // There isn't a line-break.
+      if(lineBreak === -1) { // There isn't a line-break.
         
         if(columns < line.length) { // There is a need to check for spaces.
           lineBreak = line.lastIndexOf(' ');
 
-          if(lineBreak == -1) { // The columns are lesser than the chars of the longest word.
+          if(lineBreak === -1) { // The columns are lesser than the chars of the longest word.
             return false;
           }
         }
@@ -57,14 +57,12 @@ const FontSizeFinder = function(
     }
 
     return rowsTaken <= rows;
-  }
+  };
 
   this.getFontSize = (text, width, height) => {
-    text = text.trim().replace(/\s+/g, ' ');
-
     let possibleRows = 1;
     let possibleCols;
-    const getPossibleCols = possibleRows => Math.floor(width / (height / possibleRows / charHeight * charWidth))
+    const getPossibleCols = possibleRows => Math.floor(width / (height / possibleRows / charHeight * charWidth));
     
     do {
       possibleCols = getPossibleCols(possibleRows);
@@ -75,7 +73,7 @@ const FontSizeFinder = function(
     let fs = height / possibleRows / charHeight * baseFontSize;
 
     return Math.max(Math.min(fs, maxFontSize), minFontSize);
-  }
-}
+  };
+};
 
 module.exports = FontSizeFinder;

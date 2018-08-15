@@ -9,13 +9,12 @@ const getRandomInt = (min=0, max=1) => {
 }
 
 const getRandomText = (length=10, chars=defaultChars) => {
-  
-  chars = chars || defaultChars;
+
   let ret = '';
 
   for(let i=0; i < length; ++i) {
 
-    ret += chars.substr(getRandomInt(1, chars.length), 1);
+    ret += chars.substr(getRandomInt(0, chars.length - 1), 1);
   }
 
   return ret;

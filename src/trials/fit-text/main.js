@@ -29,7 +29,7 @@ const getBox = (key) => {
 
   let width = getRandomInt(5, 10) * baseFontSize;
   let height = getRandomInt(1, 5) * baseFontSize;
-  let text = getRandomText(getRandomInt(6, 100, 'abcdefghijklmnopqrstuvwxyz0123456789    \n\n'));
+  let text = getRandomText(getRandomInt(6, 100), 'abcdefghijklmnopqrstuvwxyz0123456789    \n\n');
 
   return (
     <div key={key} className='box'
