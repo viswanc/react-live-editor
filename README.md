@@ -54,3 +54,4 @@
 * 180816
 
   * 1458  Added the lib, dev.
+  * 2247  Added dev.comparePerformance.

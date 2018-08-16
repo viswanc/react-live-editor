@@ -87,8 +87,6 @@ export default class FitText extends Component {
       Divs.push(getBox(i));
     }
 
-    let endTime = new Date;
-
     pm.report();
     
     return <div> { Divs }</div>
