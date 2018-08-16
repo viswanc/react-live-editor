@@ -50,3 +50,7 @@
   * 1248  Extracted out **getFontSize** of fit-text, as a module.
   * 1432  Made the libraries isomorphic.
   * 1605  Added line-break support to fit-text.
+
+* 180816
+
+  * 1458  Added the lib, dev.

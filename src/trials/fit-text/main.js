@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import { getRandomInt, getRandomText } from '../../libs/utils';
+import { PerfMetrics } from '../../libs/dev';
+
 import './main.css';
 import FontSizeFinder from './fontSizeFinder';
 
@@ -78,7 +80,7 @@ export default class FitText extends Component {
 
   render() {
     
-    let startTime = new Date;
+    let pm = new PerfMetrics;
     let Divs = [];
     
     for(let i=0; i < 1000; ++i) {
@@ -87,8 +89,7 @@ export default class FitText extends Component {
 
     let endTime = new Date;
 
-    console.log(`Ran at: ${startTime.getHours()}:${startTime.getMinutes()}:${startTime.getSeconds()}`);
-    console.log('Time taken:', endTime - startTime);
+    pm.report();
     
     return <div> { Divs }</div>
   }

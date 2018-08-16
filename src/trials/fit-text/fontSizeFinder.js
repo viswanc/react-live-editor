@@ -4,7 +4,7 @@
 
 ## Features
   * Uses the available real-estate is used maximally.
-  * Conttains the text within the box.
+  * Contains the text within the box.
 
 ## Improvements
   * The height sometimes overflow, due to the characters like 'g' and 'y', which flow beyond the base-line.
