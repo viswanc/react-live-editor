@@ -1,9 +1,9 @@
 /* Test Helpers */
 
-const assert = (value) => {
+const assert = (value, message='Assertion') => {
   
   if(!value) {
-    throw 'Assertion failed!';
+    throw `${ message } failed!`;
   }
 }
 

@@ -55,3 +55,7 @@
 
   * 1458  Added the lib, dev.
   * 2247  Added dev.comparePerformance.
+
+* 180823 
+  * 1815  Improved a few library functions.
+  * 1855  Implemented a basic binary-search.
