@@ -8,7 +8,7 @@
 */
 
 /* Exports */
-const bs = (startValue, stopValue, errorMargin=0, comparator) => {
+const binarySearch = (startValue, stopValue, errorMargin=0, comparator) => {
   let currentValue, res;
 
   if(stopValue === undefined) {
@@ -23,7 +23,7 @@ const bs = (startValue, stopValue, errorMargin=0, comparator) => {
       stopValue = currentValue;
     }
     else {
-      throw 'A non-zero start value is neded to auto-detect stop margins.'
+      throw new Error('A non-zero start value is neded to auto-detect stop margins.');
     }
   }
 
@@ -78,4 +78,4 @@ const bs = (startValue, stopValue, errorMargin=0, comparator) => {
   return currentValue;
 };
 
-module.exports = bs;
+module.exports = binarySearch;
