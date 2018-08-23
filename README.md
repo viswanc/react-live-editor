@@ -59,3 +59,5 @@
 * 180823 
   * 1815  Improved a few library functions.
   * 1855  Implemented a basic binary-search.
+  * 1956  Failed in generalizing the inclusion logic of boundary values.
+  * 2023  Started respecting errror margins.

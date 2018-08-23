@@ -7,5 +7,8 @@ assert(bs(1, undefined, 0, (cur) =>  cur - 9) == 9, 'Auto detect stop value, whe
 assert(bs(0, 16, 0, (cur) =>  cur - 0) == 0, 'Include start boundary');
 assert(bs(0, 16, 0, (cur) =>  cur - 16) == 16, 'Include stop boundary');
 assert(bs(0, 16, 0, (cur) =>  cur - 17) === undefined, 'Return undefined when nothing is found');
-assert(bs(0, 16, 0, (cur) =>  cur - 17) === undefined, 'Return undefined when nothing is found');
 assert(bs(0, 16, 0, (cur) =>  undefined) === undefined, 'Return undefined when comparator returns non-numbers');
+assert(bs(0, 16, 1, (cur) =>  cur - 17) === 16, 'Respect error margins');
+assert(bs(0, 16, 1, (cur) =>  cur - 9) === 8, 'Treat error margins in-par with accurate results');
+
+// #ToDo: Test with random numbers.
