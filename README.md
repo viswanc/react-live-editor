@@ -61,3 +61,6 @@
   * 1855  Implemented a basic binary-search.
   * 1956  Failed in generalizing the inclusion logic of boundary values.
   * 2023  Started respecting errror margins.
+  * 2130  Allowed for decimals.
+  * 2130  Improved the logic.
+  * 2236  Binary search, done.

@@ -1,6 +1,10 @@
 /*
 # Binary Search
     A simple binary search implementation.
+
+## Improvements
+
+  * Boundaries could be moved to their nearest even numbers, so to avoid long divisions.
 */
 
 /* Exports */
@@ -43,23 +47,29 @@ const bs = (startValue, stopValue, errorMargin=0, comparator) => {
     return;
   }
 
-  while(stopValue - startValue > errorMargin) {
-    currentValue = startValue + ((stopValue - startValue) / 2);
+  let diff = stopValue - startValue;
+
+  while(diff > errorMargin * 2) {
+    currentValue = startValue + diff / 2;
     res = comparator(currentValue);
     
-    if(res <= errorMargin && res >= -errorMargin) {
-      return currentValue;
-    }
-    else if(res < 0) {
+    if(res < 0) {
       startValue = currentValue;
     }
     else if(res > 0) {
       stopValue = currentValue;
     }
+    else if(res == 0) {
+      return currentValue;
+    }
     else {
       return;
     }
+
+    diff = stopValue - startValue;
   }
+
+  return currentValue;
 };
 
 module.exports = bs;
