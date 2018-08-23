@@ -56,7 +56,8 @@
   * 1458  Added the lib, dev.
   * 2247  Added dev.comparePerformance.
 
-* 180823 
+* 180823
+
   * 1815  Improved a few library functions.
   * 1855  Implemented a basic binary-search.
   * 1956  Failed in generalizing the inclusion logic of boundary values.
@@ -64,3 +65,7 @@
   * 2130  Allowed for decimals.
   * 2130  Improved the logic.
   * 2236  Binary search, done.
+
+* 180824
+
+  * 0109  Started supporting reversed ranges.

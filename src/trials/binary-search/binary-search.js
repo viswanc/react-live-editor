@@ -27,6 +27,12 @@ const bs = (startValue, stopValue, errorMargin=0, comparator) => {
     }
   }
 
+  if(startValue > stopValue) {
+    let temp = startValue;
+    startValue = stopValue;
+    stopValue = temp;
+  }
+
   res = comparator(startValue);
   
   if(res <= errorMargin && res >= -errorMargin) {
@@ -59,7 +65,7 @@ const bs = (startValue, stopValue, errorMargin=0, comparator) => {
     else if(res > 0) {
       stopValue = currentValue;
     }
-    else if(res == 0) {
+    else if(res === 0) {
       return currentValue;
     }
     else {
